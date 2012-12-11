@@ -29,7 +29,7 @@ Enable the bundle in your application kernel:
     {
         $bundles = array(
             // ...
-            new IDCI\Bundle\ExporterBundle\IDCIFilterFormBundle(),
+            new IDCI\Bundle\FilterFormBundle\IDCIFilterFormBundle(),
         );
     }
 
