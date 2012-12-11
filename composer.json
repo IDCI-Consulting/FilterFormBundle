@@ -1,0 +1,29 @@
+{
+    "name": "idci/filter-form-bundle",
+    "type": "symfony-bundle",
+    "description": "Symfony FilterFormBundle",
+    "keywords": ["filter", "form", "search", "entity", "doctrine"],
+    "license": "GPL-3.0+",
+    "authors": [
+        {
+            "name": "Gabriel BONDAZ",
+            "email": "gabriel.bondaz@idci-consulting.fr",
+            "homepage": "http://www.idci-consulting.fr"
+        },
+        {
+            "name": "Pierre FERROLLIET",
+            "email": "pierre.ferrolliet@idci-consulting.fr",
+            "homepage": "http://www.idci-consulting.fr"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.2",
+        "symfony/framework-bundle":       ">=2.1,<2.3-dev",
+        "twig/twig":                      "*"
+    },
+    "autoload": {
+        "psr-0": { "IDCI\\Bundle\\FilterFormBundle": "" }
+    },
+    "target-dir": "IDCI/Bundle/FilterFormBundle",
+    "minimum-stability": "dev"
+}
