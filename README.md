@@ -105,7 +105,7 @@ on a full-text search :
         public function getFilterName() { return "news_title"; }
     }
 
-On the other hand, we have to create the news filter manager, which will agregate aour filters.
+On the other hand, we have to create the news filter manager, which will agregate our filters.
 Our NewsFilterManager must look like this :
 
     <?php
@@ -142,7 +142,7 @@ How to use filter manager as service in controller
 First of all, you have to declare your own filter as a service in the service.yml in your bundle :
 
     services:
-        my_filter_manager_:
+        my_filter_manager:
             class:     MyApp\Bundle\MyBundle\Form\FilterManager\MyFilterManager
             arguments:  [@service_container]
 
@@ -151,7 +151,7 @@ Then, you have to use it in the controller :
     public function filterAction(Request $request)
     {
         // retrieve the service
-        $filterManager = $this->get('filter_manager_ad');
+        $filterManager = $this->get('my_filter_manager');
         // create the filter form according to the filters given to the filter manager
         $filterForm    = $filterManager->createForm();
 
