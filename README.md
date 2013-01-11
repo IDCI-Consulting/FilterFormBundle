@@ -42,7 +42,7 @@ All the magical of this bundle is located in the filter manager.
 An abstract filter manager is provided, but also an entity abstract filter manager
 which is able to manage all our doctrine2 entities filters.
 
-// TODO : insert filter form bundle UML schema
+![Filter Form UML schema](https://github.com/IDCI-Consulting/FilterFormBundle/blob/master/Resources/doc/idci-form-filter-bundle.png)
 
 Create our own filter manager and filters
 =========================================
