@@ -21,10 +21,23 @@ abstract class RelationFieldEntityAbstractFilter extends EntityAbstractFilter
             'label'         => $this->getFilterFormLabel(),
             'class'         => $this->getEntityClassName(),
             'query_builder' => $this->getQueryBuilder(),
-            'required'      => true,
-            'expanded'      => true,
-            'multiple'      => true
+            'required'      => false
         );
+    }
+
+    public function generateAlias($table_name, $field_name)
+    {
+        return self::slugify($this->getEntityClassName().$table_name.$field_name);
+    }
+
+    static public function slugify($text) 
+    { 
+        $text = preg_replace('~[^\\pL\d]+~u', '_', $text); 
+        $text = trim($text, '_'); 
+        $text = strtolower($text); 
+        $text = preg_replace('~[^-\w]+~', '', $text); 
+
+        return $text; 
     }
 
     public function getResultQueryBuilder($data, $qb, $name)
@@ -34,11 +47,12 @@ abstract class RelationFieldEntityAbstractFilter extends EntityAbstractFilter
             $ids[] = $object->getId();
         }
 
+        $alias = $this->generateAlias($name, $this->getEntityFieldName());
         $qb->leftJoin(
             sprintf('%s.%s', $name, $this->getEntityFieldName()),
-            $this->getEntityFieldName()
+            $alias
         );
-        $column = sprintf('%s.id', $this->getEntityFieldName());
+        $column = sprintf('%s.id', $alias);
         $qb->andWhere($qb->expr()->in($column, $ids));
 
         return $qb;
