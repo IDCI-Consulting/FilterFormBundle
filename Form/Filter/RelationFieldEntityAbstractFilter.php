@@ -47,13 +47,28 @@ abstract class RelationFieldEntityAbstractFilter extends EntityAbstractFilter
             $ids[] = $object->getId();
         }
 
-        $alias = $this->generateAlias($name, $this->getEntityFieldName());
-        $qb->leftJoin(
-            sprintf('%s.%s', $name, $this->getEntityFieldName()),
-            $alias
-        );
-        $column = sprintf('%s.id', $alias);
-        $qb->andWhere($qb->expr()->in($column, $ids));
+        if(is_null($this->getOption("mode")) || $this->getOption("mode") == "or") {
+            $alias = $this->generateAlias($name, $this->getEntityFieldName());
+            $qb->leftJoin(
+                sprintf('%s.%s', $name, $this->getEntityFieldName()),
+                $alias
+            );
+            $column = sprintf('%s.id', $alias);
+            $qb->andWhere($qb->expr()->in($column, $ids));
+        } elseif($this->getOption("mode") == "and") {
+            foreach ($ids as $id) {
+                $alias = sprintf("%s%d",
+                    $this->generateAlias($name, $this->getEntityFieldName()),
+                    $id
+                );
+                $qb->leftJoin(
+                    sprintf('%s.%s', $name, $this->getEntityFieldName()),
+                    $alias
+                );
+                $column = sprintf('%s.id', $alias);
+                $qb->andWhere($column." = ".$id);
+            }
+        }
 
         return $qb;
     }
