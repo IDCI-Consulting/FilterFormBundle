@@ -8,7 +8,7 @@ namespace IDCI\Bundle\FilterFormBundle\Form\Filter;
  * @licence: GPL
  *
  */
-abstract class ChoiceFieldEntityAbstractFilter extends EntityAbstractFilter
+abstract class ChoiceFieldEntityAbstractFilter extends EntityFieldAbstractFilter
 {
     public function getFilterFormType()
     {

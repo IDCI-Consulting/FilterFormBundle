@@ -2,7 +2,6 @@
 
 namespace IDCI\Bundle\FilterFormBundle\Form\Filter;
 
-use IDCI\Bundle\FilterFormBundle\Form\Filter\RelationFieldEntityAbstractFilter;
 
 /**
  * 
@@ -10,7 +9,7 @@ use IDCI\Bundle\FilterFormBundle\Form\Filter\RelationFieldEntityAbstractFilter;
  * @licence: GPL
  *
  */
-abstract class SortFieldEntityAbstractFilter extends EntityAbstractFilter
+abstract class SortFieldEntityAbstractFilter extends EntityFieldAbstractFilter
 {
     const ORDER_ASC = "ASC";
     const ORDER_DESC = "DESC";

@@ -49,5 +49,4 @@ abstract class EntityAbstractFilter extends AbstractFilter
 
     abstract public function getFilterFormLabel();
     abstract public function getEntityClassName();
-    abstract public function getEntityFieldName();
 }

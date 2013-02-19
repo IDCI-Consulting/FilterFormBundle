@@ -8,7 +8,7 @@ namespace IDCI\Bundle\FilterFormBundle\Form\Filter;
  * @licence: GPL
  *
  */
-abstract class RelationFieldEntityAbstractFilter extends EntityAbstractFilter
+abstract class RelationFieldEntityAbstractFilter extends EntityFieldAbstractFilter
 {
     public function getFilterFormType()
     {
