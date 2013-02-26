@@ -27,13 +27,28 @@ abstract class JoinRelationFieldEntityAbstractFilter extends RelationFieldEntity
             $alias1
         );
 
-        $alias2 = $this->generateAlias($this->getEntityJoinFieldName(), $this->getEntityFieldName());
-        $qb->leftJoin(
-            sprintf('%s.%s', $alias1, $this->getEntityFieldName()),
-            $alias2
-        );
-        $column = sprintf('%s.id', $alias2);
-        $qb->andWhere($qb->expr()->in($column, $ids));
+        if(is_null($this->getOption("mode")) || $this->getOption("mode") == "or") {
+            $alias2 = $this->generateAlias($this->getEntityJoinFieldName(), $this->getEntityFieldName());
+            $qb->leftJoin(
+                sprintf('%s.%s', $alias1, $this->getEntityFieldName()),
+                $alias2
+            );
+            $column = sprintf('%s.id', $alias2);
+            $qb->andWhere($qb->expr()->in($column, $ids));
+        } elseif($this->getOption("mode") == "and") {
+            foreach ($ids as $id) {
+                $alias2 = sprintf("%s%d",
+                    $this->generateAlias($name, $this->getEntityFieldName()),
+                    $id
+                );
+                $qb->leftJoin(
+                    sprintf('%s.%s', $alias1, $this->getEntityFieldName()),
+                    $alias2
+                );
+                $column = sprintf('%s.id', $alias2);
+                $qb->andWhere($column." = ".$id);
+            }
+        }
 
         return $qb;
     }
