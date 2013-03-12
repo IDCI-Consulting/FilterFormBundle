@@ -11,27 +11,33 @@ To install this bundle please follow the next steps:
 
 First add the dependency in your `composer.json` file:
 
-    "require": {
-        ...
-        "idci/filter-form-bundle": "dev-master"
-    },
+```json
+"require": {
+    ...
+    "idci/filter-form-bundle": "dev-master"
+},
+```
 
 Then install the bundle with the command:
 
-    php composer update
+```sh
+php composer update
+```
 
 Enable the bundle in your application kernel:
 
-    <?php
-    // app/AppKernel.php
+```php
+<?php
+// app/AppKernel.php
 
-    public function registerBundles()
-    {
-        $bundles = array(
-            // ...
-            new IDCI\Bundle\FilterFormBundle\IDCIFilterFormBundle(),
-        );
-    }
+public function registerBundles()
+{
+    $bundles = array(
+        // ...
+        new IDCI\Bundle\FilterFormBundle\IDCIFilterFormBundle(),
+    );
+}
+```
 
 Now the Bundle is installed.
 
@@ -64,6 +70,7 @@ first one but display data as a <select> html output.
 
 In one hand we have to build our filters :
 
+```php
     <?php
 
     namespace MyApp\Bundle\MyBundle\Form\Filter;
@@ -84,54 +91,59 @@ In one hand we have to build our filters :
         // filter name
         public function getFilterName() { return "news_author"; }
     }
+```
 
 The second filter we can use is a TextFieldEntityAbstractFilter, which can filter
 on a full-text search :
 
-    <?php
+```php
+<?php
 
-    namespace MyApp\Bundle\MyBundle\Form\Filter;
+namespace MyApp\Bundle\MyBundle\Form\Filter;
 
-    use IDCI\Bundle\FilterFormBundle\Form\Filter\TextFieldEntityAbstractFilter;
+use IDCI\Bundle\FilterFormBundle\Form\Filter\TextFieldEntityAbstractFilter;
 
-    class TitleFilter extends TextFieldEntityAbstractFilter
-    {
-        public function getEntityClassName() { return "MyAppMyBundle:News"; }
+class TitleFilter extends TextFieldEntityAbstractFilter
+{
+    public function getEntityClassName() { return "MyAppMyBundle:News"; }
 
-        public function getEntityFieldName() { return "title"; }
+    public function getEntityFieldName() { return "title"; }
 
-        public function getFilterFormLabel() { return "Title"; }
+    public function getFilterFormLabel() { return "Title"; }
 
-        public function getFilterName() { return "news_title"; }
-    }
+    public function getFilterName() { return "news_title"; }
+}
+```
 
 On the other hand, we have to create the news filter manager, which will agregate our filters.
 Our NewsFilterManager must look like this :
 
-    <?php
+```php
+<?php
 
-    namespace MyApp\Bundle\MyBundle\Form\FilterManager;
+namespace MyApp\Bundle\MyBundle\Form\FilterManager;
 
-    use IDCI\Bundle\FilterFormBundle\Form\FilterManager\EntityAbstractFilterManager;
-    use MyApp\Bundle\MyBundle\Form\Filter\AuthorFilter;
-    use MyApp\Bundle\MyBundle\Form\Filter\TitleFilter;
+use IDCI\Bundle\FilterFormBundle\Form\FilterManager\EntityAbstractFilterManager;
+use MyApp\Bundle\MyBundle\Form\Filter\AuthorFilter;
+use MyApp\Bundle\MyBundle\Form\Filter\TitleFilter;
 
-    class NewsFilterManager extends EntityAbstractFilterManager
+class NewsFilterManager extends EntityAbstractFilterManager
+{
+    public function buildFilters($options = array())
     {
-        public function buildFilters($options = array())
-        {
-            // We have to add the previous filters
-            $this
-                ->addFilter(new AuthorFilter())
-                ->addFilter(new TitleFilter())
-            ;
-        }
-
-        public function getEntityClassName()
-        {
-            return "MyApp\Bundle\MyBundle\Entity\News";
-        }
+        // We have to add the previous filters
+        $this
+            ->addFilter(new AuthorFilter())
+            ->addFilter(new TitleFilter())
+        ;
     }
+
+    public function getEntityClassName()
+    {
+        return "MyApp\Bundle\MyBundle\Entity\News";
+    }
+}
+```
 
 We provide some existing filters dealing with entities, you can have a look at the
 bundle Filter directory.
@@ -141,41 +153,47 @@ How to use filter manager as service in controller
 
 First of all, you have to declare your own filter as a service in the service.yml in your bundle :
 
-    services:
-        my_filter_manager:
-            class:     MyApp\Bundle\MyBundle\Form\FilterManager\MyFilterManager
-            arguments:  [@service_container]
+```yml
+services:
+    my_filter_manager:
+        class:     MyApp\Bundle\MyBundle\Form\FilterManager\MyFilterManager
+        arguments:  [@service_container]
+```
 
 Then, you have to use it in the controller :
 
-    public function filterAction(Request $request)
-    {
-        // retrieve the service
-        $filterManager = $this->get('my_filter_manager');
-        // create the filter form according to the filters given to the filter manager
-        $filterForm    = $filterManager->createForm();
+```php
+public function filterAction(Request $request)
+{
+    // retrieve the service
+    $filterManager = $this->get('my_filter_manager');
+    // create the filter form according to the filters given to the filter manager
+    $filterForm    = $filterManager->createForm();
 
-        // is data filtered ?
-        if ($request->query->has($filterForm->getName())) {
-            $filterForm->bindRequest($request);
-        }
-
-        $filteredNews = $filterManager->filter():
-
-        // let's give all parameters to the view
-        return array(
-            'news'                   => $filteredNews,
-            'filter_form'            => $filterForm->createView(),
-            'form_action_route_name' => $request->get('_route'),
-            'is_filtered'            => $filterManager->hasQueryingFilters()
-        );
+    // is data filtered ?
+    if ($request->query->has($filterForm->getName())) {
+        $filterForm->bindRequest($request);
     }
+
+    $filteredNews = $filterManager->filter():
+
+    // let's give all parameters to the view
+    return array(
+        'news'                   => $filteredNews,
+        'filter_form'            => $filterForm->createView(),
+        'form_action_route_name' => $request->get('_route'),
+        'is_filtered'            => $filterManager->hasQueryingFilters()
+    );
+}
+```
 
 Now we just have to display our filter form in the view :
 
-    <form action="{{ path(form_action_route_name) }}" method="get">
-        {{ form_widget(filter_form) }}
-        <button type="submit">Filter</button>
-    </form>
+```html
+<form action="{{ path(form_action_route_name) }}" method="get">
+    {{ form_widget(filter_form) }}
+    <button type="submit">Filter</button>
+</form>
+```
 
 That'it. All the logic and the powerful of this bundle is located in the filter manager.
