@@ -50,6 +50,15 @@ which is able to manage all our doctrine2 entities filters.
 
 ![Filter Form UML schema](https://raw.github.com/IDCI-Consulting/FilterFormBundle/master/Resources/doc/idci-form-filter-bundle.png)
 
+NB : To use the range filter you need to install jQuery and jQuery UI.
+NB 2 : To use RangeFilter and OrderByFilter, you need to import
+the bundle config.yml in your app/config/config.yml :
+
+    imports:
+        - { resource: parameters.yml }
+        - { resource: security.yml }
+        - { resource: @IDCIFilterFormBundle/Resources/config/config.yml }
+
 Create our own filter manager and filters
 =========================================
 

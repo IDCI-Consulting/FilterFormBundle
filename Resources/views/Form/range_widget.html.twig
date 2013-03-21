@@ -1,0 +1,19 @@
+{% block range_widget %}
+    <div class="range">
+        From
+        {{ form_widget(form['min'], { 'attr' : {'value' : 0}}) }}
+        to
+        {{ form_widget(form['max'], { 'attr' : {'value' : 1000}}) }}
+    </div>
+    <div class="slider_range"></div>
+    <script type="text/javascript">
+        jQuery(document).ready(function($){
+            $(".slider_range").minMaxSlider({
+                  'min_input' : '#{{ form['min'].get('id') }}',
+                  'max_input': '#{{ form['max'].get('id') }}',
+                  'min_size' : 0,
+                  'max_size' : 1000
+            });
+        });
+    </script>
+{% endblock %}

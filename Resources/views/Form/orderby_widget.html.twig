@@ -1,0 +1,7 @@
+{% block orderby_widget %}
+    <div class="orderby">
+        <span class="pull-left">Order by</span>
+        <span class="pull-left">{{ form_widget(form['field']) }}</span>
+        {{ form_widget(form['order'], { 'attr': {'class' : 'pull-left'} }) }}
+    </div>
+{% endblock %}

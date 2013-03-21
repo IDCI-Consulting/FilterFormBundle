@@ -1,0 +1,10 @@
+services:
+    idci_filterformbundle.type.range:
+        class: IDCI\Bundle\FilterFormBundle\Form\Type\RangeType
+        tags:
+            - { name: form.type, alias: range }
+
+    idci_filterformbundle.type.orderby:
+        class: IDCI\Bundle\FilterFormBundle\Form\Type\OrderByType
+        tags:
+            - { name: form.type, alias: orderby }
