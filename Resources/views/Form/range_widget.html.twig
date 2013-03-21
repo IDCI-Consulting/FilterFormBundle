@@ -1,8 +1,8 @@
 {% block range_widget %}
     <div class="range">
-        From
+        {{ form_label(form['min']) }}
         {{ form_widget(form['min'], { 'attr' : {'value' : 0}}) }}
-        to
+        {{ form_label(form['max']) }}
         {{ form_widget(form['max'], { 'attr' : {'value' : 1000}}) }}
     </div>
     <div class="slider_range"></div>
