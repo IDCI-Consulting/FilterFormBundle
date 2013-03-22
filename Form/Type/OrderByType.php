@@ -16,6 +16,9 @@ class OrderByType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        if(!isset($options['data']) || !isset($options['data']['field_label'])) {
+            $options['data']['field_label'] = "Order by";
+        }
         $builder
             ->add('field', 'choice', array(
                 'multiple' => false,

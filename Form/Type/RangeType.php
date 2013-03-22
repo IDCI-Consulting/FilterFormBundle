@@ -16,6 +16,14 @@ class RangeType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        if(!isset($options['data'])) {
+            if(!isset($options['data']['min_label'])) {
+                $options['data']['min_label'] = "From";
+            }
+            if(!isset($options['data']['max_label'])) {
+                $options['data']['max_label'] = "to";
+            }
+        }
         $builder
             ->add('min', 'text', array(
                 'label' => $options['data']['min_label']
