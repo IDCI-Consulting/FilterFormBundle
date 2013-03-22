@@ -9,21 +9,24 @@ namespace IDCI\Bundle\FilterFormBundle\Form\Filter;
  * @licence: GPL
  *
  */
-abstract class TextFieldEntityAbstractFilter extends EntityFieldAbstractFilter
+abstract class RangeFieldEntityAbstractFilter extends EntityAbstractFilter
 {
+    abstract public function getEntityFieldValueMin();
+    abstract public function getEntityFieldValueMax();
+
     public function getFilterFormType()
     {
-        return 'text';
+        return 'range';
     }
 
     public function getResultQueryBuilder($data, $qb, $name)
     {
         $qb
-            ->andWhere(sprintf('%s.%s = :data',
-                $name,
-                $this->getEntityFieldName()
+            ->andWhere($qb->expr()->between(
+                sprintf('%s.%s', $name, $this->getEntityFieldName()),
+                $data['min'],
+                $data['max']
             ))
-            ->setParameter('data', $data)
         ;
 
         return $qb;

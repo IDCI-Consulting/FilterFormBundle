@@ -1,6 +1,6 @@
 <?php
 
-namespace Store\Bundle\MobileBundle\DependencyInjection;
+namespace IDCI\Bundle\FilterFormBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;

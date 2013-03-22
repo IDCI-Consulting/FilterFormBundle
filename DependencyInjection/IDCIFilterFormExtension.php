@@ -1,6 +1,6 @@
 <?php
 
-namespace Store\Bundle\MobileBundle\DependencyInjection;
+namespace IDCI\Bundle\FilterFormBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;

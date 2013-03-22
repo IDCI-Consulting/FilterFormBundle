@@ -2,5 +2,5 @@
 twig:
     form:
         resources:
-            - 'StoreMobileBundle:Form:range_widget.html.twig'
-            - 'StoreMobileBundle:Form:orderby_widget.html.twig'
+            - 'IDCIFilterFormBundle:Form:range_widget.html.twig'
+            - 'IDCIFilterFormBundle:Form:orderby_widget.html.twig'
