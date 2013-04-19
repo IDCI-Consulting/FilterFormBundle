@@ -28,10 +28,12 @@ class RangeType extends AbstractType
         }
         $builder
             ->add('min', 'text', array(
-                'label' => $options['data']['min_label']
+                'label'     => $options['data']['min_label'],
+                'required'  => false
             ))
             ->add('max', 'text', array(
-                'label' => $options['data']['max_label']
+                'label'     => $options['data']['max_label'],
+                'required'  => false
             ))
         ;
     }
