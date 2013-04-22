@@ -20,10 +20,12 @@ class DateRangeType extends RangeType
             ->add('min', 'date', array(
                 'format' => 'dd-MM-yy',
                 'widget' => 'single_text',
+                'required'  => false
             ))
             ->add('max', 'date', array(
                 'format' => 'dd-MM-yy',
                 'widget' => 'single_text',
+                'required'  => false
             ))
         ;
     }
