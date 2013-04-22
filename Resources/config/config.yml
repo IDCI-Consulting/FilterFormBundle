@@ -3,4 +3,5 @@ twig:
     form:
         resources:
             - 'IDCIFilterFormBundle:Form:range_widget.html.twig'
+            - 'IDCIFilterFormBundle:Form:date_range_widget.html.twig'
             - 'IDCIFilterFormBundle:Form:orderby_widget.html.twig'

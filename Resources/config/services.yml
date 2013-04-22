@@ -4,6 +4,11 @@ services:
         tags:
             - { name: form.type, alias: range }
 
+    idci_filterformbundle.type.date_range:
+        class: IDCI\Bundle\FilterFormBundle\Form\Type\DateRangeType
+        tags:
+            - { name: form.type, alias: date_range }
+
     idci_filterformbundle.type.orderby:
         class: IDCI\Bundle\FilterFormBundle\Form\Type\OrderByType
         tags:

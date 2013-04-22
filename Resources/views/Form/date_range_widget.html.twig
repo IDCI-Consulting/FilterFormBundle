@@ -1,0 +1,6 @@
+{% block date_range_widget %}
+    <span class="range">
+        From {{ form_widget(form['min'], { 'attr' : {'class' : 'datepicker'}}) }}
+        to {{ form_widget(form['max'], { 'attr' : {'class' : 'datepicker'}}) }}
+    </span>
+{% endblock %}
