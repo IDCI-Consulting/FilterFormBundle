@@ -11,7 +11,7 @@ use IDCI\Bundle\FilterFormBundle\Form\Filter\EntityAbstractFilter;
 /**
  * 
  * @author:  Gabriel BONDAZ <gabriel.bondaz@idci-consulting.fr>
- * @licence: GPL
+ * @license: GPL
  *
  */
 abstract class EntityAbstractFilterManager extends AbstractFilterManager

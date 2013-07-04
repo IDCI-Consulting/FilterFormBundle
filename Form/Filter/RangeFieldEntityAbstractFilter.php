@@ -6,7 +6,7 @@ namespace IDCI\Bundle\FilterFormBundle\Form\Filter;
  * 
  * @author:  Gabriel BONDAZ <gabriel.bondaz@idci-consulting.fr>
  * @author:  Pierre FERROLLIET <pierre.ferrolliet@idci-consulting.fr>
- * @licence: GPL
+ * @license: GPL
  *
  */
 abstract class RangeFieldEntityAbstractFilter extends EntityAbstractFilter

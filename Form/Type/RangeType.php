@@ -9,7 +9,7 @@ use Symfony\Component\Form\FormBuilderInterface;
  * 
  * @author:  Gabriel BONDAZ <gabriel.bondaz@idci-consulting.fr>
  * @author:  Pierre FERROLLIET <pierre.ferrolliet@idci-consulting.fr>
- * @licence: GPL
+ * @license: GPL
  *
  */
 class RangeType extends AbstractType

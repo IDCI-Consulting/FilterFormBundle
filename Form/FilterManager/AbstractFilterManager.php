@@ -8,10 +8,11 @@ use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormBuilder;
 use IDCI\Bundle\FilterFormBundle\Form\EventListener\QueringFilterSubscriber;
 
+
 /**
  * 
  * @author:  Gabriel BONDAZ <gabriel.bondaz@idci-consulting.fr>
- * @licence: GPL
+ * @license: GPL
  *
  */
 abstract class AbstractFilterManager
