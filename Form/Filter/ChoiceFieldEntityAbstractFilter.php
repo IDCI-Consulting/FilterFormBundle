@@ -45,6 +45,10 @@ abstract class ChoiceFieldEntityAbstractFilter extends EntityFieldAbstractFilter
 
     public function getResultQueryBuilder($data, $qb, $name)
     {
+        if (!is_array($data)) {
+            $data = array($data);
+        }
+        
         $column = sprintf('%s.%s', $name, $this->getEntityFieldName());
         $qb->andWhere($qb->expr()->in($column, $data));
 
