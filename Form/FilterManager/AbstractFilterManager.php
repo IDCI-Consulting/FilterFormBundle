@@ -150,9 +150,9 @@ abstract class AbstractFilterManager
     /**
      * setQueryingFilters
      */
-    public function setQueryingFilters($querying_filters)
+    public function setQueryingFilters($queryingFilters)
     {
-         $this->queryingFilters = $querying_filters;
+         $this->queryingFilters = $queryingFilters;
     }
 
     /**
