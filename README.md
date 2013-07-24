@@ -184,7 +184,7 @@ public function filterAction(Request $request)
         $filterForm->bindRequest($request);
     }
 
-    $filteredNews = $filterManager->filter():
+    $filteredNews = $filterManager->filter();
 
     // let's give all parameters to the view
     return array(
